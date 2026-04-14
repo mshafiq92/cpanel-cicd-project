@@ -1,0 +1,13 @@
+{
+  "name": "cpanel-cicd-demo",
+  "version": "1.0.0",
+  "description": "Learning CI/CD with GitHub Actions and Namecheap cPanel",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node src/index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

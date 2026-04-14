@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>cPanel CI/CD Demo</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 800px; margin: 60px auto; padding: 20px; background: #f9f9f9; }
+    h1 { color: #2c3e50; }
+    .status { color: green; font-weight: bold; font-size: 18px; }
+    .endpoint { background: #fff; border-left: 4px solid #3498db; padding: 10px 15px; margin: 10px 0; border-radius: 3px; }
+    pre { background: #1e1e1e; color: #00ff88; padding: 20px; border-radius: 8px; font-size: 14px; overflow-x: auto; }
+    .badge { display: inline-block; background: #3498db; color: white; padding: 3px 10px; border-radius: 12px; font-size: 12px; margin-left: 8px; }
+  </style>
+</head>
+<body>
+  <h1>🚀 cPanel CI/CD Demo</h1>
+  <p class="status">✅ App is live!</p>
+  <p>This app auto-deploys via <strong>GitHub Actions</strong> on every push to <code>main</code>.</p>
+
+  <h2>Endpoints <span class="badge">Live</span></h2>
+  <div class="endpoint"><strong>GET /health</strong> — Health check & uptime</div>
+  <div class="endpoint"><strong>GET /api/info</strong> — App version & deploy timestamp</div>
+  <div class="endpoint"><strong>GET /api/hello?name=You</strong> — Hello greeting</div>
+
+  <h2>Live Deploy Info</h2>
+  <pre id="info">Fetching...</pre>
+
+  <script>
+    fetch('/api/info')
+      .then(r => r.json())
+      .then(data => {
+        document.getElementById('info').textContent = JSON.stringify(data, null, 2);
+      })
+      .catch(err => {
+        document.getElementById('info').textContent = 'Error: ' + err.message;
+      });
+  </script>
+</body>
+</html>
