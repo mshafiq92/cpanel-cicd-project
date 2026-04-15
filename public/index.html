@@ -3,38 +3,362 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>cPanel CI/CD Demo</title>
-  <style>
-    body { font-family: Arial, sans-serif; max-width: 800px; margin: 60px auto; padding: 20px; background: #f9f9f9; }
-    h1 { color: #2c3e50; }
-    .status { color: green; font-weight: bold; font-size: 18px; }
-    .endpoint { background: #fff; border-left: 4px solid #3498db; padding: 10px 15px; margin: 10px 0; border-radius: 3px; }
-    pre { background: #1e1e1e; color: #00ff88; padding: 20px; border-radius: 8px; font-size: 14px; overflow-x: auto; }
-    .badge { display: inline-block; background: #3498db; color: white; padding: 3px 10px; border-radius: 12px; font-size: 12px; margin-left: 8px; }
-  </style>
+  <title>DevOps & MLOps CI/CD — Shafiq</title>
+  <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
-  <h1>🚀 cPanel CI/CD Demo</h1>
-  <p class="status">✅ App is live!</p>
-  <p>This app auto-deploys via <strong>GitHub Actions</strong> on every push to <code>main</code>.</p>
 
-  <h2>Endpoints <span class="badge">Live</span></h2>
-  <div class="endpoint"><strong>GET /health</strong> — Health check & uptime</div>
-  <div class="endpoint"><strong>GET /api/info</strong> — App version & deploy timestamp</div>
-  <div class="endpoint"><strong>GET /api/hello?name=You</strong> — Hello greeting</div>
+<!-- ── Navigation ─────────────────────────────────────────────────────────── -->
+<nav>
+  <div class="logo">⚙️ DevOps CI/CD</div>
+  <ul>
+    <li><a href="#journey">Journey</a></li>
+    <li><a href="#concepts">Concepts</a></li>
+    <li><a href="#architecture">Architecture</a></li>
+    <li><a href="#dashboard">Dashboard</a></li>
+  </ul>
+</nav>
 
-  <h2>Live Deploy Info</h2>
-  <pre id="info">Fetching...</pre>
+<!-- ── Hero ───────────────────────────────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-tag">🚀 Live CI/CD Pipeline</div>
+  <h1>DevOps & MLOps<br /><span>Learning Project</span></h1>
+  <p>
+    A fully automated deployment pipeline — from a single <code>git push</code>
+    to a live server on Namecheap shared hosting. Built step by step, documented in real time.
+  </p>
+  <div class="badges">
+    <span class="badge">⚡ Node.js</span>
+    <span class="badge">🔄 GitHub Actions</span>
+    <span class="badge">🔐 SSH Keys</span>
+    <span class="badge">🟢 PM2</span>
+    <span class="badge">🌐 Namecheap cPanel</span>
+    <span class="badge">📦 Express</span>
+  </div>
+  <div class="hero-btns">
+    <a href="#dashboard" class="btn btn-primary">View Live Dashboard</a>
+    <a href="#journey" class="btn btn-outline">See the Journey</a>
+  </div>
+</section>
 
-  <script>
-    fetch('/api/info')
-      .then(r => r.json())
-      .then(data => {
-        document.getElementById('info').textContent = JSON.stringify(data, null, 2);
-      })
-      .catch(err => {
-        document.getElementById('info').textContent = 'Error: ' + err.message;
-      });
-  </script>
+<!-- ── Journey ────────────────────────────────────────────────────────────── -->
+<section id="journey">
+  <div class="section-label">📖 The Journey</div>
+  <h2 class="section-title">How This Was Built — Step by Step</h2>
+  <p class="section-sub">
+    Every phase of this project is documented below — from the first SSH key to the final automated deployment.
+  </p>
+
+  <div class="timeline">
+
+    <div class="timeline-item done">
+      <div class="timeline-header">
+        <h3>Phase 1 — SSH Setup & Key Authentication</h3>
+        <span class="phase-badge done">✅ Complete</span>
+      </div>
+      <p>Generated two SSH key pairs (personal + GitHub Actions), authorized both on the Namecheap cPanel server, configured the local SSH client, and verified a live connection into the remote server at premium340.</p>
+      <div class="timeline-steps">
+        <span class="step-tag">ssh-keygen ed25519</span>
+        <span class="step-tag">cPanel SSH Manager</span>
+        <span class="step-tag">authorized_keys</span>
+        <span class="step-tag">~/.ssh/config</span>
+        <span class="step-tag">Port 21098</span>
+      </div>
+    </div>
+
+    <div class="timeline-item done">
+      <div class="timeline-header">
+        <h3>Phase 2 — Application Build & GitHub Push</h3>
+        <span class="phase-badge done">✅ Complete</span>
+      </div>
+      <p>Built a Node.js/Express application with REST API endpoints, a live dashboard frontend, and deployment history tracking. Initialized the GitHub repository and pushed the first commit to the main branch.</p>
+      <div class="timeline-steps">
+        <span class="step-tag">Express v4</span>
+        <span class="step-tag">REST API</span>
+        <span class="step-tag">JSON storage</span>
+        <span class="step-tag">npm init</span>
+        <span class="step-tag">git push</span>
+      </div>
+    </div>
+
+    <div class="timeline-item progress">
+      <div class="timeline-header">
+        <h3>Phase 3 — Server Environment Setup</h3>
+        <span class="phase-badge progress">🔄 In Progress</span>
+      </div>
+      <p>SSH into Namecheap server, install NVM and Node.js LTS without root access, install PM2 process manager, and clone the GitHub repository onto the server. Run the app manually to confirm it works before automation.</p>
+      <div class="timeline-steps">
+        <span class="step-tag">NVM install</span>
+        <span class="step-tag">Node.js LTS</span>
+        <span class="step-tag">PM2</span>
+        <span class="step-tag">git clone</span>
+        <span class="step-tag">curl localhost:3000</span>
+      </div>
+    </div>
+
+    <div class="timeline-item pending">
+      <div class="timeline-header">
+        <h3>Phase 4 — CI/CD Pipeline with GitHub Actions</h3>
+        <span class="phase-badge pending">⏳ Pending</span>
+      </div>
+      <p>Write the GitHub Actions workflow YAML file that triggers on every push to main, SSHes into the server using stored secrets, pulls the latest code, installs dependencies, and restarts the app with PM2.</p>
+      <div class="timeline-steps">
+        <span class="step-tag">deploy.yml</span>
+        <span class="step-tag">GitHub Secrets</span>
+        <span class="step-tag">appleboy/ssh-action</span>
+        <span class="step-tag">git pull</span>
+        <span class="step-tag">pm2 restart</span>
+      </div>
+    </div>
+
+    <div class="timeline-item pending">
+      <div class="timeline-header">
+        <h3>Phase 5 — Process Management & Persistence</h3>
+        <span class="phase-badge pending">⏳ Pending</span>
+      </div>
+      <p>Configure PM2 ecosystem file for production settings, set up auto-restart on server reboot, verify crash recovery, and configure log management for the running application.</p>
+      <div class="timeline-steps">
+        <span class="step-tag">ecosystem.config.js</span>
+        <span class="step-tag">pm2 save</span>
+        <span class="step-tag">pm2 startup</span>
+        <span class="step-tag">log management</span>
+      </div>
+    </div>
+
+    <div class="timeline-item pending">
+      <div class="timeline-header">
+        <h3>Phase 6 — Testing, Verification & Rollback</h3>
+        <span class="phase-badge pending">⏳ Pending</span>
+      </div>
+      <p>Run the full deploy verification test by bumping the version, pushing to GitHub, watching Actions run, and confirming the new version appears on the live site. Test the rollback procedure using git reset.</p>
+      <div class="timeline-steps">
+        <span class="step-tag">version bump test</span>
+        <span class="step-tag">/api/info verify</span>
+        <span class="step-tag">git reset rollback</span>
+        <span class="step-tag">security checklist</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Concepts ───────────────────────────────────────────────────────────── -->
+<section id="concepts">
+  <div class="section-label">📚 Concepts</div>
+  <h2 class="section-title">DevOps & MLOps Explained</h2>
+  <p class="section-sub">The two disciplines powering modern software and AI delivery pipelines.</p>
+
+  <div class="concepts-grid">
+
+    <div class="concept-card">
+      <div class="concept-icon">⚙️</div>
+      <h3>DevOps</h3>
+      <p>DevOps is a set of practices that combines software development (Dev) and IT operations (Ops). The goal is to shorten the development lifecycle and deliver high-quality software continuously.</p>
+      <p>It eliminates the wall between developers who write code and operations teams who deploy it — making everyone responsible for delivery and reliability.</p>
+      <div class="concept-tags">
+        <span class="concept-tag">CI/CD</span>
+        <span class="concept-tag">Infrastructure as Code</span>
+        <span class="concept-tag">Monitoring</span>
+        <span class="concept-tag">Automation</span>
+        <span class="concept-tag">Collaboration</span>
+      </div>
+    </div>
+
+    <div class="concept-card">
+      <div class="concept-icon">🤖</div>
+      <h3>MLOps</h3>
+      <p>MLOps (Machine Learning Operations) applies DevOps principles to machine learning workflows. It bridges the gap between data scientists building models and engineers deploying them to production.</p>
+      <p>Without MLOps, models often live only in notebooks — MLOps gets them into real applications and keeps them accurate over time.</p>
+      <div class="concept-tags">
+        <span class="concept-tag">Model Training</span>
+        <span class="concept-tag">Model Registry</span>
+        <span class="concept-tag">Feature Stores</span>
+        <span class="concept-tag">Drift Detection</span>
+        <span class="concept-tag">A/B Testing</span>
+      </div>
+    </div>
+
+    <div class="concept-card">
+      <div class="concept-icon">🔄</div>
+      <h3>CI/CD Pipeline</h3>
+      <p>Continuous Integration means code changes are automatically tested when pushed. Continuous Deployment means passing code is automatically deployed to production — no manual steps.</p>
+      <p>This project implements a real CI/CD pipeline: push code → GitHub triggers → SSH into server → pull code → restart app. All automatic.</p>
+      <div class="concept-tags">
+        <span class="concept-tag">GitHub Actions</span>
+        <span class="concept-tag">Automated Testing</span>
+        <span class="concept-tag">Zero-Touch Deploy</span>
+        <span class="concept-tag">Rollback</span>
+      </div>
+    </div>
+
+    <div class="concept-card">
+      <div class="concept-icon">🔐</div>
+      <h3>SSH & Key Auth</h3>
+      <p>Secure Shell (SSH) lets you securely access remote servers over an encrypted connection. Key-based authentication replaces passwords with cryptographic key pairs — far more secure and automatable.</p>
+      <p>This project uses two separate key pairs: one for manual access, one dedicated to GitHub Actions automation.</p>
+      <div class="concept-tags">
+        <span class="concept-tag">Ed25519 Keys</span>
+        <span class="concept-tag">authorized_keys</span>
+        <span class="concept-tag">GitHub Secrets</span>
+        <span class="concept-tag">No Passwords</span>
+      </div>
+    </div>
+
+    <div class="concept-card">
+      <div class="concept-icon">🟢</div>
+      <h3>PM2 Process Manager</h3>
+      <p>PM2 keeps Node.js applications alive after SSH disconnects, auto-restarts on crashes, manages logs, and can start apps automatically on server reboot — all without root access.</p>
+      <p>Essential for running Node.js on shared hosting where you have no system service manager like systemd.</p>
+      <div class="concept-tags">
+        <span class="concept-tag">Process Persistence</span>
+        <span class="concept-tag">Auto-restart</span>
+        <span class="concept-tag">Log Management</span>
+        <span class="concept-tag">Zero Downtime</span>
+      </div>
+    </div>
+
+    <div class="concept-card">
+      <div class="concept-icon">🌐</div>
+      <h3>Shared Hosting vs VPS</h3>
+      <p>Shared hosting means many users on one server — no root access, no custom ports, limited control. VPS gives you a dedicated virtual machine with full root access.</p>
+      <p>This project proves that a real CI/CD pipeline is achievable even on shared hosting — using NVM, PM2, and .htaccess proxy as workarounds.</p>
+      <div class="concept-tags">
+        <span class="concept-tag">NVM</span>
+        <span class="concept-tag">User-space install</span>
+        <span class="concept-tag">.htaccess proxy</span>
+        <span class="concept-tag">Port 21098</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Architecture ───────────────────────────────────────────────────────── -->
+<section id="architecture">
+  <div class="section-label">🏗️ Architecture</div>
+  <h2 class="section-title">The Full Pipeline</h2>
+  <p class="section-sub">Every component in the automated deployment chain — from your keyboard to the live server.</p>
+
+  <div class="arch-diagram"><span class="hl">DEVELOPER MACHINE</span>
+  Write Code → git add → git commit → <span class="hl2">git push origin main</span>
+                                              │
+                                              ▼
+<span class="hl">GITHUB.COM</span>  ──  Repository: github.com/mshafiq92/cpanel-cicd-project
+  │
+  ├── Stores: SSH_PRIVATE_KEY, SSH_HOST, SSH_USERNAME, SSH_PORT (as Secrets)
+  │
+  └── <span class="hl2">GitHub Actions Triggered</span>  (on: push to main)
+        │
+        ├── Step 1: Checkout latest code
+        ├── Step 2: Load SSH private key from Secrets
+        ├── Step 3: Open SSH tunnel → <span class="hl3">apexstrategicpartners.co:21098</span>
+        └── Step 4: Run on server:
+                      cd ~/app
+                      git pull origin main
+                      npm install --production
+                      <span class="hl2">pm2 restart app</span>
+                              │
+                              ▼
+<span class="hl">NAMECHEAP SERVER</span>  ──  /home/apexiybi/
+  ├── app/                 ← Cloned GitHub repo
+  │   ├── src/index.js
+  │   ├── public/
+  │   ├── data/deployments.json
+  │   └── .git/
+  ├── .nvm/                ← Node.js (user-local, no root needed)
+  └── .ssh/authorized_keys ← Both public keys live here
+  │
+  PM2 running: node src/index.js (port 3000)
+  .htaccess proxying: app.apexstrategicpartners.co → localhost:3000
+                              │
+                              ▼
+              <span class="hl2">app.apexstrategicpartners.co  ← LIVE ✅</span></div>
+</section>
+
+<!-- ── Dashboard ──────────────────────────────────────────────────────────── -->
+<section id="dashboard">
+  <div class="section-label">📊 Live Dashboard</div>
+  <h2 class="section-title">Server Stats — Real Time</h2>
+  <p class="section-sub">All data is fetched live from the server API. Updates every 5 seconds automatically.</p>
+
+  <div class="dashboard-grid">
+
+    <div class="stat-card">
+      <div class="stat-label">🟢 Status</div>
+      <div id="stat-status" class="stat-value green">
+        <span class="dot green pulse"></span> Checking...
+      </div>
+      <div class="stat-sub">Server health</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-label">⏱️ Uptime</div>
+      <div id="stat-uptime" class="stat-value blue">—</div>
+      <div class="stat-sub">Since last restart</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-label">🔢 Version</div>
+      <div id="stat-version" class="stat-value purple">—</div>
+      <div class="stat-sub">Current deploy</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-label">💾 Memory</div>
+      <div id="stat-memory" class="stat-value blue">—</div>
+      <div id="stat-memory-sub" class="stat-sub">Heap usage</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-label">🖥️ Node.js</div>
+      <div id="stat-node" class="stat-value">—</div>
+      <div class="stat-sub">Runtime version</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-label">🌍 Environment</div>
+      <div id="stat-env" class="stat-value">—</div>
+      <div class="stat-sub">NODE_ENV</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-label">🖧 Platform</div>
+      <div id="stat-platform" class="stat-value">—</div>
+      <div class="stat-sub">Server OS</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-label">🕐 Last Deploy</div>
+      <div id="stat-deployed" style="font-size:0.9rem;font-weight:700;">—</div>
+      <div class="stat-sub">Deploy timestamp</div>
+    </div>
+
+  </div>
+
+  <!-- Deployment History -->
+  <div class="deploy-history">
+    <div class="deploy-history-header">
+      <span>📋 Deployment History</span>
+      <span id="deploy-count" style="color:var(--muted);font-size:0.8rem;">Loading...</span>
+    </div>
+    <div class="deploy-list" id="deploy-list">
+      <div class="deploy-item">
+        <div style="color:var(--muted);font-size:0.85rem;">Loading deployments...</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ─────────────────────────────────────────────────────────────── -->
+<footer>
+  <p>Built by <strong>Shafiq</strong> · DevOps & MLOps Learning Project · Auto-deployed via GitHub Actions</p>
+  <p style="margin-top:6px;">
+    <a href="https://github.com/mshafiq92/cpanel-cicd-project" target="_blank">GitHub Repository</a>
+    · <a href="/health">Health Check</a>
+    · <a href="/api/info">API Info</a>
+  </p>
+</footer>
+
+<script src="/js/dashboard.js"></script>
 </body>
 </html>
