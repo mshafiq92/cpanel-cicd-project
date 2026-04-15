@@ -1,8 +1,3 @@
-# ─────────────────────────────────────────────────────────────
-# CI/CD Pipeline — Auto Deploy to Namecheap cPanel via SSH
-# Triggers on every push to the main branch
-# ─────────────────────────────────────────────────────────────
-
 name: Deploy to Namecheap cPanel
 
 on:
@@ -16,12 +11,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
-      # Step 1 — Checkout the latest code
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      # Step 2 — Deploy via SSH using appleboy/ssh-action
       - name: Deploy to Server via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -31,38 +23,30 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
 
           script: |
-            # Load NVM so node, npm, pm2 are available
             export NVM_DIR="$HOME/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-            # Navigate to app directory
             cd ~/app
-
-            # Pull latest code from GitHub
             git pull origin main
-
-            # Install any new/updated dependencies
             npm install --production
 
-            # Restart app — if not running, start it
-            pm2 restart app || pm2 start src/index.js --name "app"
+            # Reload using ecosystem file (production env, zero downtime)
+            pm2 reload ecosystem.config.js --env production \
+              || pm2 start ecosystem.config.js --env production
 
-            # Save PM2 state
             pm2 save
-
-            # Log the running processes (shows in GitHub Actions log)
             pm2 list
 
-            # Record this deployment in history
+            # Record deployment in history
+            VERSION=$(node -e "console.log(require('./package.json').version)")
             curl -s -X POST http://localhost:3000/api/deployments \
               -H "Content-Type: application/json" \
-              -d "{\"version\":\"$(node -e "console.log(require('./package.json').version)")\",\"message\":\"Automated deployment via GitHub Actions\",\"status\":\"success\"}" \
+              -d "{\"version\":\"$VERSION\",\"message\":\"Automated deployment via GitHub Actions\",\"status\":\"success\"}" \
               && echo "Deployment recorded ✅" \
               || echo "Warning: Could not record deployment"
 
             echo "✅ Deployment complete at $(date)"
 
-      # Step 3 — Verify deployment succeeded (health check)
       - name: Verify Deployment
         run: |
           sleep 8
