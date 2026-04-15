@@ -5,7 +5,7 @@ const fs = require("fs");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const APP_VERSION = "1.2.0";
+const APP_VERSION = "1.3.1";
 const DEPLOY_TIME = new Date().toISOString();
 const DEPLOYMENTS_FILE = path.join(__dirname, "../data/deployments.json");
 
